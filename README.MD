@@ -1,4 +1,4 @@
-# nodejsbackend
+# hodie-pod
 
 # Installation prerequisite
 * docker
