@@ -1,11 +1,12 @@
 {
-  "name": "messengerserver",
+  "name": "hodie-backend",
   "version": "1.0.0",
-  "description": "Listen to webhooks from Messenger, websocket to send to client.",
+  "description": "Listen to webhooks, websocket too client.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node ./src/app.js",
+    "dev": "npx nodemon node ./src/app.js"
   },
   "author": "Emil Larsson",
   "license": "MIT",

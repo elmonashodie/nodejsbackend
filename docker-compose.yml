@@ -1,0 +1,20 @@
+version: "3.5"
+
+services:
+  node:
+    build: .
+    container_name: hodie-server
+    ports:
+      - 9090:9090
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - PORT=9090
+      - APP_NAME=hodie-server
+      - SERVER_ROOT=.
+      - MONGODB_URI=mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@github-db:27018/github
+      - CHOKIDAR_USEPOLLING=true
+      - WEBHOOK_URL=$WEBHOOK_URL
+      - CALLBACK_URL=$CALLBACK_URL
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
