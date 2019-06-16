@@ -6,12 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/app.js",
-    "dev": "npx nodemon node ./src/app.js"
+    "dev": "npx nodemon ./src/app.js"
   },
   "author": "Emil Larsson",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
   }
 }

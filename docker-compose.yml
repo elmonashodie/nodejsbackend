@@ -3,7 +3,9 @@ version: "3.5"
 services:
   node:
     build: .
-    container_name: hodie-server
+    container_name: "hodie-server"
+    depends_on: 
+      - mongo
     ports:
       - 9090:9090
     environment:
@@ -11,10 +13,24 @@ services:
       - PORT=9090
       - APP_NAME=hodie-server
       - SERVER_ROOT=.
-      - MONGODB_URI=mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@github-db:27018/github
+      - MONGODB_URI=mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@hodie-mongodb:27017/hodie
       - CHOKIDAR_USEPOLLING=true
       - WEBHOOK_URL=$WEBHOOK_URL
       - CALLBACK_URL=$CALLBACK_URL
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+  mongo:
+    image: mongo:latest
+    container_name: "hodie-mongodb"
+    restart: always
+    environment: 
+      MONGO_INITDB_ROOT_USERNAME: "${MONGO_ROOT_USERNAME}"
+      MONGO_INITDB_ROOT_PASSWORD: "${MONGO_ROOT_PASSWORD}"
+      MONGODB_USER: "${MONGO_USERNAME}"
+      MONGODB_PASS: "${MONGO_PASSWORD}"
+      MONGODB_DATABASE: "hodie"
+    volumes: 
+      - ./data/db:/data/db
+    ports: 
+      - 27017:27017

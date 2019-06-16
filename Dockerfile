@@ -13,5 +13,5 @@ EXPOSE 8080
 RUN apk del native-deps
 
 COPY ./entrypoint.sh /
-run chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

@@ -1,11 +1,16 @@
 'use strict'
 
-const port = 6000 || process.env.PORT
+const port = process.env.PORT || 6000
 
 const express = require('express')
+const mongoose = require('./config/mongoose')
 const bodyParser = require('body-parser')
 
 const app = express().use(bodyParser.json())
+
+// Connect to database
+console.log(process.env.MONGODB_URI)
+mongoose.run()
 
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {
